@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Background dynamic</title>
+<style>
+body{
+	margin:0;
+	padding: 0;
+    font-size: 2rem;
+    display:flex;
+    flex:1;
+    min-height: 100vh;
+    align-items: center;
+}
+
+section{
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100vh;
+	background : linear-gradient(90deg,#3f51B5,#00BCD4); /* attention pas d'espace */
+	animation: animate 20s linear infinite;
+}
+
+@keyframes animate{
+	0%
+	{
+		filter: hue-rotate(0deg);
+
+	}
+	50%
+	{
+		filter: hue-rotate(360deg);
+
+	}
+	100%
+	{
+		filter: hue-rotate(0deg);
+
+	}
+}
+
+section:before{
+	content:'';
+	position:absolute;
+	top:0;
+	left: 0;
+	border-top: 100vh solid transparent;
+	border-left: 100vh solid #fff;
+	border-right: 110vh solid #fff;
+	opacity: 0.1;
+}
+
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border:20px solid white;
+      border-radius:50%;
+      margin:50px auto;
+      position: relative;
+      padding:2rem;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px);
+    }
+    .hand_h {
+      width:50%;
+      height:6px;
+      background:black;
+      position: absolute;
+      top:50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    }
+		.hand_s {
+			width:50%;
+			height:12px;
+			background:white;
+			position: absolute;
+			top:50%;
+			transform-origin: 100%;
+			transform: rotate(90deg);
+			transition: all 0.05s;
+			transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+		}
+		.hand_m {
+			width:50%;
+			height:6px;
+			background:salmon;
+			position: absolute;
+			top:50%;
+			transform-origin: 100%;
+			transform: rotate(90deg);
+			transition: all 0.05s;
+			transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+		}
+
+	.second-hand{
+	}
+
+	</style>
+</head>
+<body>
+
+	<section>
+	</section>
+
+
+	<div class="clock">
+      <div class="clock-face">
+        <div class="hand_s "></div>
+        <div class="hand_m "></div>
+        <div class="hand_h "></div>
+      </div>
+    </div>
+
+		<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+  <script>
+    // on va créer une fonction setdate dans cette fonction var now pour avoir la date du jour.
+		var madate = new Date();
+		var seconds= madate.getSeconds();
+		var min= madate.getMinutes();
+		var hour= madate.getHours();
+		var secdeg = "rotate("+((seconds/60)* 360+90)+"deg)";
+		var mindeg = "rotate("+((min/60)* 360+90)+"deg)";
+		var hdeg = "rotate("+((hour/12)* 360+90)+"deg)";
+		$('.hand_s').css("transform",secdeg);
+		$('.hand_m').css("transform",mindeg);
+		$('.hand_h').css("transform",hdeg);
+
+    function setDate(){
+      var madate = new Date();
+			var seconds= madate.getSeconds();
+			var min= madate.getMinutes();
+			var hour= madate.getHours();
+			var secdeg = "rotate("+((seconds/60)* 360+90)+"deg)";
+			var mindeg = "rotate("+((min/60)* 360+90)+"deg)";
+			var hdeg = "rotate("+((hour/12)* 360+90)+"deg)";
+			$('.hand_s').css("transform",secdeg);
+			$('.hand_m').css("transform",mindeg);
+			$('.hand_h').css("transform",hdeg);
+    }
+
+    //setDate();console.log(now)
+
+    setInterval(setDate,1000); //Pour actualiser l'heure chaque seconde.
+
+
+
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Générateur de citations</title>
+<style>
+body{
+	margin: 0;
+	padding: 0;
+	display:flex;
+	justify-content:center;
+	font-family: sans-serif;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #060c21;
+
+}
+
+.box{
+	position: relative;
+	width: 300px;
+	min-height:400px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #060c21;
+
+}
+
+.box:before{
+	content: '';
+	position:absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	background-color:#060c21;
+	z-index : -1;
+
+}
+
+
+.box:after{
+	content: '';
+	position:absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	background-color:#fff;
+	z-index : -2;
+	filter:blur(40px);
+
+}
+
+.box:before,
+.box:after{
+	padding: 20px;
+	box-sizing: border-box;
+	color:{#ffffff}
+}
+.box:before,
+.box:after{
+	background: linear-gradient(235deg, #89ff00, #060c21, #00bcd4);
+}
+.container{
+	padding: 20px;
+	box-sizing: border-box;
+	color:#fff;
+}
+</style>
+
+
+</head>
+<body>
+	<div class="box">
+	<div class="container">
+
+
+<p class="horloge">fdqsfqsdfqsdf</p>
+	    <p class="quote">fdqsfqsdfqsdf</p>
+        <span class="author">fdsfqsdf</span>
+        <span class="infos">dfqsdfqsfqsd</span> ,<br>
+<button id="changeQuote">Cliquez ici</button>
+
+	</div>
+
+
+	</div>
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script>
+	var citations=[
+		{phrase:"Le voyage est une fuite contre la routine, la monotonie, la familiarité, la soumission à la régulation du gouvernement collectif.",
+		nom:"Sylvain Tesson",
+	descr:"Artiste, Aventurier, écrivain (1972 - )"},
+{phrase:"Comme les rêves sont cruels, qui nous laissent entrevoir des merveilles pour mieux nous en priver !",
+nom:"Amélie Nothomb",
+descr:"Artiste, écrivain (1966 - )"},
+{phrase:"On passe une moitié de sa vie à attendre ceux qu'on aimera et l'autre moitié à quitter ceux qu'on aime.",
+nom:"Victor Hugo",
+descr:"Artiste, écrivain, Poète, Romancier (1802 - 1885)"
+},
+{phrase:"Exige beaucoup de toi-même et attends peu des autres. Ainsi beaucoup d'ennuis te seront épargnés.",
+nom:"Confucius",
+descr:"Philosophe"},
+{phrase:"Pour critiquer les gens il faut les connaître, et pour les connaître, il faut les aimer.",
+nom:"Coluche",
+descr:"Artiste, Comique (1944 - 1986)"},
+{phrase:"Si je devais recommencer ma vie, je n'y voudrais rien changer, seulement j'ouvrirais un peu plus grand les yeux.",
+nom:"Jules Renard",
+descr:"Artiste, écrivain (1864 - 1910)"
+},
+{phrase:"Le seul moyen de se délivrer d'une tentation, c'est d'y céder. Résistez et votre âme se rend malade à force de languir ce qu'elle s'interdit.",
+nom:"Oscar Wilde",
+descr:"Artiste, écrivain (1854 - 1900)"
+},
+{phrase:"La vie est un mystère qu'il faut vivre, et non un problème à résoudre.",
+nom:"Gandhi",
+descr:"Homme politique, Philosophe, Révolutionnaire (1869 - 1948)"},
+{phrase:"La vie, c'est comme une bicyclette, il faut avancer pour ne pas perdre l'équilibre.",
+nom:"Albert Einstein",
+descr:"Mathématicien, Physicien, Scientifique (1879 - 1955)"},
+{phrase:"Un sourire coûte moins cher que l'électricité, mais donne autant de lumière.",
+nom:"Abbé Pierre",
+descr:"Abbé, Prêtre, Religieux (1912 - 2007)"},
+];
+
+  function getRandomInt(max) {return Math.floor(Math.random() * Math.floor(max));};
+
+	function dateFr()
+{
+     // les noms de jours / mois
+     var jours = new Array("dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi");
+     var mois = new Array("janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre");
+     // on recupere la date
+     var date = new Date();
+     // on construit le message
+     var message = jours[date.getDay()] + " ";   // nom du jour
+     message += date.getDate() + " ";   // numero du jour
+     message += mois[date.getMonth()] + " ";   // mois
+     message += date.getFullYear();
+     return message;
+}
+	$('.horloge').html(dateFr());
+
+	$('.quote').html(citations[0].phrase);
+	$('.author').html(citations[0].nom);
+	$('.infos').html(citations[0].descr);
+
+  $('#changeQuote').click(function(){
+	randNumber=getRandomInt(citations.length);
+$('.quote').html(citations[randNumber].phrase);
+$('.author').html(citations[randNumber].nom);
+$('.infos').html(citations[randNumber].descr);
+});
+</script>
+</body>
+</html>
